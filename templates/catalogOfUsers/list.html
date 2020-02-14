@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% load shop_extras %}
+{% load bootstrap4 %}
+{% block content %}
+  <div class="full-row advance_property vh-100">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 col-lg-3">
+            <div class="row">
+              <div class="advance_sidebar bg-default color-white">
+                <div class="back">
+                  <a href="{% url 'home' %}"><i class="fa fa-angle-left" aria-hidden="true"></i>Back Home</a>
+                </div>
+                <div class="main-title-two pb_60 mt_30">
+                  <h4 class="title-white color-white">Wyszukiwarka Użytkowników</h4>
+                </div>
+                <form method="get" class="form-horizontal">
+                  {% bootstrap_form filter.form %}
+                  <button type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-9">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                  <div class="property_thumview mt-4 px-5">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12">
+                        <div class="agent_ser_grid">
+                          <div class="row">
+                            {% for profile in object_list %}
+                            <div class="col-md-6 col-xl-4">
+                              <div class="profile mb_30">
+                                <div class="pro-img overfollow">
+                                  <img src="/media/{{ profile.picture }}" alt="">
+                                </div>
+                                <div class="profile_data p-4 color-secondery hover_primary">
+                                  <h5 class="font-weight-bold"><a href="{% url 'profile-detail' profile.user.id %}">{{ profile.user.first_name|default:"Anonymous" }}</a></h5>
+                                  <div>{{ profile.city }}</div>
+                                  <div>{{ profile.price }}zł</div>
+                                </div>
+                              </div>
+                            </div>
+                            {% empty %}
+                            No users yet.
+                            {% endfor %}
+                          </div>
+                        </div>
+                        <nav aria-label="Page navigation" class="alinment d-table">
+                            <div class="col-sm-12">
+                                {% if is_paginated %}
+                                <ul class="pagination mt_30 mb_30">
+                                  {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' page_obj.previous_page_number %}">&laquo;</a></li>
+                                  {% else %}
+                                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                                  {% endif %}
+                                  {% for i in paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                      <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                    {% else %}
+                                      <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
+                                    {% endif %}
+                                  {% endfor %}
+                                  {% if page_obj.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' page_obj.next_page_number %}">&raquo;</a></li>
+                                  {% else %}
+                                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                                  {% endif %}
+                                </ul>
+                              {% endif %}        
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

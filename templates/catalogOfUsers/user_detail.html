@@ -1,0 +1,149 @@
+{% extends 'main/base.html' %}
+{% load shop_extras %}
+
+{% block content %}
+<section class="full-row">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<div class="profile_details mb_30 d-inline-block rounded">
+					<div class="row">
+						<div class="col-lg-5 col-md-5">
+							<div class="pro-img overfollow">
+								<img src="/media/{{ profile.picture }}" alt="">
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-7">
+							<div class="profile_data py-4 color-secondery hover_primary">
+								<div class="name_deg d-inline-block mb_30">
+									<h5 class="font-weight-bold d-block color-primary">{{ profile.user.first_name|default:"Anonymous" }}
+										{{ profile.user.last_name }}</h5>
+								</div>								
+								</div>
+								<div class="bio_data">
+									<table class="table">
+										<tbody>
+											<tr>
+												<th>Email :</th>
+												<td>{{ profile.user.email }}</td>
+											</tr>
+											<tr>
+												<th>City :</th>
+												<td>{{ profile.city }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="agent_socalmedia d-inline-block">
+									<ul>
+										{% if profile.url_facebook %}
+											<li><a href="http://{{ profile.url_facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+										{% endif %}
+										{% if profile.url_linkedin %}
+											<li><a href="http://{{ profile.url_linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+										{% endif %}
+										{% if profile.url_custom1 %}
+											<li><a href="http://{{ profile.url_custom1 }}"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+										{% endif %}
+										{% if profile.url_custom2 %}
+											<li><a href="http://{{ profile.url_custom2 }}"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+										{% endif %}
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-12">
+				<div class="row">
+					<div class="col-md-8 col-lg-8">
+						<div class="over_view pt-4">
+
+							<div class="tab-content mt_60" id="pills-tabContent">
+								<div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+									aria-labelledby="pills-home-tab">
+									<h4 class="color-primary mb_30">About:</h4>
+									<p>{{ profile.aboutMe }}</p>
+									<br>
+									<h4 class="color-primary mb_30">Feedback:</h4>
+									<div class="customer_feedback pb-5">
+										<h5 class="font-weight-bold color-primary">Lorem ipsum</h5>
+										<p class="color-secondery"><span class="font-weight-bold color-primary">Customer
+												: </span> Lorem ipsum</p>
+										<div class="feedback_date mt-3 mb-2 color-secondery">
+											<ul class="color-default">
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											</ul>
+											<span>( 5.00 )</span>
+											<p>October 2018 - December 2018</p>
+										</div>
+										<p class="color-secondery">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus sem vel turpis finibus lacinia. Nullam orci lacus, pulvinar sed velit eu, eleifend tincidunt nisl. Sed elit urna, molestie ac lectus ut, scelerisque hendrerit elit. Quisque sodales dui quis arcu vulputate, eget facilisis tortor posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut congue elit dolor, eget interdum leo semper at. Nam et suscipit velit, a laoreet nunc. Etiam eleifend porttitor lectus vitae vehicula. Sed sit amet magna sodales, convallis mauris ac, faucibus nunc. Nullam volutpat magna purus, quis feugiat sem faucibus sed. Etiam sit amet diam rutrum, dictum velit non, vulputate risus. Maecenas non sem eu massa condimentum sollicitudin.
+
+										</p>
+									</div>
+									<div class="customer_feedback pb-5">
+										<h5 class="font-weight-bold color-primary">Lorem ipsum</h5>
+										<p class="color-secondery"><span class="font-weight-bold color-primary">Customer
+												: </span> Lorem ipsum</p>
+										<div class="feedback_date mt-3 mb-2 color-secondery">
+											<ul class="color-default">
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											</ul>
+											<span>( 5.00 )</span>
+											<p>October 2018 - December 2018</p>
+										</div>
+										<p class="color-secondery">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus sem vel turpis finibus lacinia. Nullam orci lacus, pulvinar sed velit eu, eleifend tincidunt nisl. Sed elit urna, molestie ac lectus ut, scelerisque hendrerit elit. Quisque sodales dui quis arcu vulputate, eget facilisis tortor posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut congue elit dolor, eget interdum leo semper at. Nam et suscipit velit, a laoreet nunc. Etiam eleifend porttitor lectus vitae vehicula. Sed sit amet magna sodales, convallis mauris ac, faucibus nunc. Nullam volutpat magna purus, quis feugiat sem faucibus sed. Etiam sit amet diam rutrum, dictum velit non, vulputate risus. Maecenas non sem eu massa condimentum sollicitudin.
+
+</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% if request.user.id != profile.user.id  %}
+					<div class="col-md-4 col-lg-4">
+						<div class="broker_contact mt_30 d-inline-block p_30 boxshadow_one">
+							<div class="img_80 float-left pr_20 mb_20"><img src="images/user/02.jpg" alt=""></div>
+							<div class="broker_name">
+								<h6 class="font-weight-bold color-default">Wyślij wiadomość</h6>
+							</div>
+							<form class="form4 w-100 d-inline-block" action="/messages/create/" method="post">
+								<div class="row">
+									{% csrf_token %}
+									<input type="hidden" name="to_user" value="{{ profile.user.id }}">
+									<div class="col-md-12 col-lg-12">
+										<div class="form-group">
+											<label for="id_subject">Subject</label>
+											<input type="text" name="subject" class="form-control" placeholder="Subject"
+												title="" required="" id="id_subject">
+										</div>
+										<div class="form-group">
+											<label for="message">Message</label>
+											<textarea class="form-control" id="message" name="content" cols="30"
+												rows="6" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 col-lg-12">
+										<button type="submit" id="send" value="submit"
+											class="btn btn-default1 w-100">Send Message</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
